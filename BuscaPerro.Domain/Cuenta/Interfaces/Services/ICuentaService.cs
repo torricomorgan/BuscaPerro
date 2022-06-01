@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BuscaPerro.Domain.Cuenta.DTO;
+using BuscaPerro.Domain.Cuenta.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +10,7 @@ namespace BuscaPerro.Domain.Cuenta.Interfaces.Services
 {
     public interface ICuentaService
     {
-
+        Task<bool> RegistrarCuenta(ParRegistrarCuenta parRegistrarCuenta);
+        Task<CuentaDTO> RetornarPerfilCuenta(int idCuenta);
     }
 }
