@@ -1,5 +1,11 @@
-using DataAccess.BuscaPerro.Repository;
-using Domain.BuscaPerro.Interfaz.Repository;
+using BuscaPerro.Dal.Cuenta.Repository;
+using BuscaPerro.Dal.Enfermedad.Repository;
+using BuscaPerro.Dal.Mascota.Repository;
+using BuscaPerro.Dal.Vacunacion.Repository;
+using BuscaPerro.Domain.Interfaz.Cuenta.Repository;
+using BuscaPerro.Domain.Interfaz.Enfermedad.Repository;
+using BuscaPerro.Domain.Interfaz.Mascota.Repository;
+using BuscaPerro.Domain.Interfaz.Vacunacion.Repository;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BuscaPerroApi

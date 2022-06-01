@@ -7,7 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
+    <Compile Remove="DTO\**" />
+    <Compile Remove="Models\**" />
+    <EmbeddedResource Remove="DTO\**" />
+    <EmbeddedResource Remove="Models\**" />
+    <None Remove="DTO\**" />
+    <None Remove="Models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BuscaPerro.Base\BuscaPerro.Base.csproj" />
   </ItemGroup>
 
 </Project>
