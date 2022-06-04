@@ -14,5 +14,6 @@ namespace BuscaPerro.Domain.Mascota.Interfaces.Services
         Task<bool> RegistrarMascota(ParRegistrarMascota parRegistrarMascota);
         Task<MascotaDTO> PerfilMascota(int idMascota);
         Task<IEnumerable<RazaEntity>> RetornarRazas(int idEspecie);
+        Task<IEnumerable<MascotaDTO>> ListarMascotaPorCuenta(int id_cuenta);
     }
 }

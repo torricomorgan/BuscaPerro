@@ -57,6 +57,50 @@ namespace BuscaPerro.Service.Vacunacion
             return result;
         }
 
+        public async Task<bool> RegistrarVacunaACalendario(ParRegistrarVacunaCalendario parRegistrarVacunaCalendario)
+        {
+            #region Variables
+            bool result = false;
+            var vacunaCalendario = new Calendario_vacunacionEntity();
+            #endregion
+
+            try
+            {
+                #region Transaccion
+                using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+                {
+                    vacunaCalendario = Metodos.PropertyCopier<Calendario_vacunacionEntity>.Convert(parRegistrarVacunaCalendario);
+                    await calendarioRepository.Insert(vacunaCalendario);
+
+                    scope.Complete();
+                    result = true;
+                }
+                #endregion
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return result;
+        }
+
+        public async Task<IEnumerable<VacunaCalendarioDTO>> ListarCalendarioVacunas(int idMascota)
+        {
+            #region Variables
+            IEnumerable<VacunaCalendarioDTO> vacunasCalendario = Enumerable.Empty<VacunaCalendarioDTO>();
+            #endregion
+
+            try
+            {
+                vacunasCalendario = await calendarioRepository.ObtenerVacunasMascota(idMascota);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return vacunasCalendario;
+        }
+
         public async Task<IEnumerable<VacunaDTO>> ListarVacunas()
         {
             #region Variables

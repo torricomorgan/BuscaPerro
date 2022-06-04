@@ -24,14 +24,24 @@ namespace BuscaPerroApi.Controllers.Vacunacion
             return Ok(await this.vacunacionService.RegistrarVacuna(parRegistrarVacuna));
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Proveedor_vacunaEntity>>> ListarProveedores()
-        {
-            return Ok(await this.vacunacionService.ListarProveedoresVacunas());
-        }
-        [HttpGet]
         public async Task<ActionResult<IEnumerable<VacunaDTO>>> ListarVacunas()
         {
             return Ok(await this.vacunacionService.ListarVacunas());
+        }
+        [HttpPost]
+        public async Task<ActionResult<bool>> RegistrarVacunaMascota([FromBody] ParRegistrarVacunaCalendario parRegistrarVacuna)
+        {
+            return Ok(await this.vacunacionService.RegistrarVacunaACalendario(parRegistrarVacuna));
+        }
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<VacunaCalendarioDTO>>> ListarVacunasMascota(int idMascota)
+        {
+            return Ok(await this.vacunacionService.ListarCalendarioVacunas(idMascota));
+        }
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Proveedor_vacunaEntity>>> ListarProveedores()
+        {
+            return Ok(await this.vacunacionService.ListarProveedoresVacunas());
         }
     }
 }

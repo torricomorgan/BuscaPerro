@@ -81,6 +81,23 @@ namespace BuscaPerro.Service.Mascota
             return mascota;
         }
 
+        public async Task<IEnumerable<MascotaDTO>> ListarMascotaPorCuenta(int id_cuenta)
+        {
+            #region Variables
+            IEnumerable<MascotaDTO> mascotas = Enumerable.Empty<MascotaDTO>();
+            #endregion
+
+            try
+            {
+                mascotas = await mascotaRepository.ObtenerMascotasPorCuenta(id_cuenta);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return mascotas;
+        }
+
         public async Task<IEnumerable<RazaEntity>> RetornarRazas(int idEspecie)
         {
             #region Variables

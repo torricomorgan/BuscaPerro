@@ -8,5 +8,7 @@ namespace BuscaPerro.Domain.Enfermedad.Models
 {
     public class ParRegistrarEnfermedad
     {
+        public string nombre { get; set; }
+        public string descripcion { get; set; }
     }
 }
