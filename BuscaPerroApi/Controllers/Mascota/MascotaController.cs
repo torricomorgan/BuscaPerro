@@ -33,6 +33,11 @@ namespace BuscaPerroApi.Controllers.Mascota
         {
             return Ok(await this.mascotaService.ListarMascotaPorCuenta(idCuenta));
         }
+        [HttpGet]
+        public async Task<ActionResult<UbicacionMascotaDTO>> RastrearMascota(int idMascota)
+        {
+            return Ok(await this.mascotaService.RastrearMascota(idMascota));
+        }
         [HttpPost]
         public async Task<ActionResult<int>> RegistrarPesoMascota([FromBody] ParRegistrarPeso parRegistrarPeso)
         {

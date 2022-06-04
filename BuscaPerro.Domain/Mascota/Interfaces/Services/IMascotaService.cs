@@ -19,5 +19,6 @@ namespace BuscaPerro.Domain.Mascota.Interfaces.Services
         Task<bool> RegistrarRazas(ParRegistrarRaza parRegistrarRaza);
         Task<bool> RegistrarHistorialPeso(ParRegistrarPeso parRegistrarPeso);
         Task<IEnumerable<HistoricoPesoDTO>> ListarHistorialPesoPorMascota(int idMascota);
+        Task<UbicacionMascotaDTO> RastrearMascota(int idMascota);
     }
 }

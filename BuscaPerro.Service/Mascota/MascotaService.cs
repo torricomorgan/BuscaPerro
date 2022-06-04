@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Transactions;
 
@@ -80,6 +81,35 @@ namespace BuscaPerro.Service.Mascota
             }
             return mascota;
         }
+        public async Task<UbicacionMascotaDTO> RastrearMascota(int idMascota)
+        {
+            #region Variables
+            var mascotaUbicacion = new UbicacionMascotaDTO();
+            var ubicacion = new Nearest();
+            HttpClient client = new HttpClient();
+            string json = String.Empty;
+            #endregion
+
+            try
+            {
+                json = await client.GetStringAsync("https://api.3geonames.org/randomland.BO.json");
+                var aux = JsonSerializer.Deserialize<Rootobject>(json);
+                if (aux != null)
+                    ubicacion = aux.nearest;
+                mascotaUbicacion = new UbicacionMascotaDTO() {
+                    latitud = ubicacion.latt,
+                    longitud = ubicacion.longt,
+                    ciudad = ubicacion.city,
+                    departamento = ubicacion.prov,
+                    pais = ubicacion.state
+                };
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return mascotaUbicacion;
+        }
 
         public async Task<IEnumerable<MascotaDTO>> ListarMascotaPorCuenta(int id_cuenta)
         {
@@ -125,6 +155,7 @@ namespace BuscaPerro.Service.Mascota
             }
             return result;
         }
+
         public async Task<IEnumerable<HistoricoPesoDTO>> ListarHistorialPesoPorMascota(int idMascota)
         {
             #region Variables
