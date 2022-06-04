@@ -2,12 +2,13 @@
 using BuscaPerro.Domain.Mascota.Interfaces.Services;
 using BuscaPerro.Domain.Vacunacion.Interfaces.Services;
 using BuscaPerro.Domain.Cuenta.Interfaces.Services;
+using BuscaPerro.Domain.Autentificacion.Interfaces;
 using BuscaPerro.Service.Cuenta;
 using BuscaPerro.Service.Mascota;
 using BuscaPerro.Service.Enfermedad;
 using BuscaPerro.Service.Vacunacion;
+using BuscaPerro.Service.Autotentificacion;
 using Microsoft.Extensions.DependencyInjection;
-
 
 namespace BuscaPerroApi
 {
@@ -19,6 +20,7 @@ namespace BuscaPerroApi
             services.AddScoped<IMascotaService, MascotaService>();
             services.AddScoped<IEnfermedadService, EnfermedadService>();
             services.AddScoped<IVacunacionService, VacunacionService>();
+            services.AddScoped<IAutorizacionService, AutorizacionService>();
 
             return services;
         }
