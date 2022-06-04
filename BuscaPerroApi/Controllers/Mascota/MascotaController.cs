@@ -33,6 +33,26 @@ namespace BuscaPerroApi.Controllers.Mascota
         {
             return Ok(await this.mascotaService.ListarMascotaPorCuenta(idCuenta));
         }
+        [HttpPost]
+        public async Task<ActionResult<int>> RegistrarPesoMascota([FromBody] ParRegistrarPeso parRegistrarPeso)
+        {
+            return Ok(await this.mascotaService.RegistrarHistorialPeso(parRegistrarPeso));
+        }
+        [HttpGet]
+        public async Task<ActionResult<RazaEntity>> ListarPesosMascota(int idMascota)
+        {
+            return Ok(await this.mascotaService.ListarHistorialPesoPorMascota(idMascota));
+        }
+        [HttpGet]
+        public async Task<ActionResult<RazaEntity>> RetornarEspecies()
+        {
+            return Ok(await this.mascotaService.RetornarEspecies());
+        }
+        [HttpPost]
+        public async Task<ActionResult<int>> RegistrarRaza([FromBody] ParRegistrarRaza parRegistrarRaza)
+        {
+            return Ok(await this.mascotaService.RegistrarRazas(parRegistrarRaza));
+        }
         [HttpGet]
         public async Task<ActionResult<RazaEntity>> RetornarRazas(int idEspecia)
         {

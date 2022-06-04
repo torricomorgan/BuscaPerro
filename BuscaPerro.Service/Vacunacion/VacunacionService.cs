@@ -118,6 +118,33 @@ namespace BuscaPerro.Service.Vacunacion
             return vacunas;
         }
 
+        public async Task<bool> RegistrarProveedorVacuna(ParRegistrarProveedor parRegistrarProveedor)
+        {
+            #region Variables
+            bool result = false;
+            var proveedor = new Proveedor_vacunaEntity();
+            #endregion
+
+            try
+            {
+                #region Transaccion
+                using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+                {
+                    proveedor = Metodos.PropertyCopier<Proveedor_vacunaEntity>.Convert(parRegistrarProveedor);
+                    await proveedorRepository.Insert(proveedor);
+
+                    scope.Complete();
+                    result = true;
+                }
+                #endregion
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return result;
+        }
+
         public async Task<IEnumerable<Proveedor_vacunaEntity>> ListarProveedoresVacunas()
         {
             #region Variables

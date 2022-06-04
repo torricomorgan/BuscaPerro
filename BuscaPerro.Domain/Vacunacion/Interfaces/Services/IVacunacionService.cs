@@ -11,5 +11,6 @@ namespace BuscaPerro.Domain.Vacunacion.Interfaces.Services
         Task<IEnumerable<VacunaDTO>> ListarVacunas();
         Task<bool> RegistrarVacunaACalendario(ParRegistrarVacunaCalendario parRegistrarVacunaCalendario);
         Task<IEnumerable<VacunaCalendarioDTO>> ListarCalendarioVacunas(int idMascota);
+        Task<bool> RegistrarProveedorVacuna(ParRegistrarProveedor parRegistrarProveedor);
     }
 }

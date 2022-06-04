@@ -98,6 +98,95 @@ namespace BuscaPerro.Service.Mascota
             return mascotas;
         }
 
+        public async Task<bool> RegistrarHistorialPeso(ParRegistrarPeso parRegistrarPeso)
+        {
+            #region Variables
+            bool result = false;
+            var historialPeso = new Historial_pesoEntity();
+            #endregion
+
+            try
+            {
+                #region Transaccion
+                using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+                {
+                    historialPeso = Metodos.PropertyCopier<Historial_pesoEntity>.Convert(parRegistrarPeso);
+
+                    await this.historial_pesoRepository.Insert(historialPeso);
+
+                    scope.Complete();
+                    result = true;
+                }
+                #endregion
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return result;
+        }
+        public async Task<IEnumerable<HistoricoPesoDTO>> ListarHistorialPesoPorMascota(int idMascota)
+        {
+            #region Variables
+            IEnumerable<HistoricoPesoDTO> pesos = Enumerable.Empty<HistoricoPesoDTO>();
+            #endregion
+
+            try
+            {
+                pesos = await historial_pesoRepository.BuscarPesosPorMascota(idMascota);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return pesos;
+        }
+
+        public async Task<IEnumerable<EspecieEntity>> RetornarEspecies()
+        {
+            #region Variables
+            IEnumerable<EspecieEntity> especies = Enumerable.Empty<EspecieEntity>();
+            #endregion
+
+            try
+            {
+                especies = await especieRepository.GetAll();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return especies;
+        }
+
+        public async Task<bool> RegistrarRazas(ParRegistrarRaza parRegistrarRaza)
+        {
+            #region Variables
+            bool result = false;
+            var raza = new RazaEntity();
+            #endregion
+
+            try
+            {
+                #region Transaccion
+                using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+                {
+                    raza = Metodos.PropertyCopier<RazaEntity>.Convert(parRegistrarRaza);
+
+                    await this.razaRepository.Insert(raza);
+
+                    scope.Complete();
+                    result = true;
+                }
+                #endregion
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return result;
+        }
+
         public async Task<IEnumerable<RazaEntity>> RetornarRazas(int idEspecie)
         {
             #region Variables

@@ -38,6 +38,11 @@ namespace BuscaPerroApi.Controllers.Vacunacion
         {
             return Ok(await this.vacunacionService.ListarCalendarioVacunas(idMascota));
         }
+        [HttpPost]
+        public async Task<ActionResult<bool>> RegistrarProveedores([FromBody] ParRegistrarProveedor parRegistrarProveedor)
+        {
+            return Ok(await this.vacunacionService.RegistrarProveedorVacuna(parRegistrarProveedor));
+        }
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Proveedor_vacunaEntity>>> ListarProveedores()
         {
