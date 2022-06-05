@@ -81,7 +81,7 @@ namespace BuscaPerro.Service.Enfermedad
             return result;
         }
 
-        public async Task<IEnumerable<HistoricoEnfermedadDTO>> ListarHistoricoEnfermedad(int idMascota)
+        public async Task<IEnumerable<HistoricoEnfermedadDTO>> ListarHistoricoEnfermedadPorMascota(int idMascota)
         {
             #region Variables
             IEnumerable<HistoricoEnfermedadDTO> historicoEnfermedades = Enumerable.Empty<HistoricoEnfermedadDTO>();
@@ -90,6 +90,22 @@ namespace BuscaPerro.Service.Enfermedad
             try
             {
                 historicoEnfermedades = await historico_EnfermedadesRepository.ObtenerHistoricoMascota(idMascota);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return historicoEnfermedades;
+        }
+        public async Task<IEnumerable<HistoricoEnfermedadDTO>> ListarHistoricoEnfermedadPorCuenta(int idCuenta)
+        {
+            #region Variables
+            IEnumerable<HistoricoEnfermedadDTO> historicoEnfermedades = Enumerable.Empty<HistoricoEnfermedadDTO>();
+            #endregion
+
+            try
+            {
+                historicoEnfermedades = await historico_EnfermedadesRepository.ObtenerHistoricoMascotaCuenta(idCuenta);
             }
             catch (Exception ex)
             {

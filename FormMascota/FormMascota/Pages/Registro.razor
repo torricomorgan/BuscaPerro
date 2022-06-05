@@ -1,0 +1,116 @@
+﻿@page "/Registro"
+@inject HttpClient http;
+@inject IRepositorio https;
+@inject IMostrarMensajes mostrarMensajes
+@inject NavigationManager navigationManager
+<PageTitle>Login</PageTitle>
+
+<div class="container-fluid contenedor">
+    <div class="Fondo">
+ <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="tab-login" data-mdb-toggle="pill" href="/Login" role="tab"
+      aria-controls="pills-login " aria-selected="true">Login</a>
+  </li>
+  <li class="nav-item " role="presentation">
+    <a class="nav-link active" id="tab-register" data-mdb-toggle="pill" href="/Registro" role="tab"
+      aria-controls="pills-register " aria-selected="false">Register</a>
+  </li>
+</ul>
+<div class="tab-pane fade show active" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
+
+    <EditForm Model="RegisterUser" OnValidSubmit="RegisterF">
+    <div class="form-outline mb-4">
+        <input type="text" id="registerName" @bind="RegisterUser.nombre" class="form-control" />
+        <label class="form-label"  for="registerName">Nombre</label>
+      </div>
+
+
+      <div class="form-outline mb-4">
+        <input type="text" id="registerUsername" @bind="RegisterUser.apellido" class="form-control" />
+        <label class="form-label" for="registerUsername">Apellido</label>
+      </div>
+
+
+      <div class="form-outline mb-4">
+        <input type="email" id="registerEmail" @bind="RegisterUser.email" class="form-control" />
+        <label class="form-label" for="registerEmail">Email</label>
+      </div>
+
+ 
+      <div class="form-outline mb-4">
+        <input type="password" id="registerPassword" @bind="RegisterUser.contrasenia" class="form-control" />
+        <label class="form-label" for="registerPassword">Contraseña</label>
+      </div>
+
+        <div class="form-outline mb-4">
+        <input type="text" id="registerTelefono" @bind="RegisterUser.telefono" class="form-control" />
+        <label class="form-label" for="registerTelefono">Contraseña</label>
+      </div>
+    
+  
+      <div class="form-outline mb-4">
+        <input type="date"  class="form-control" onchange="@DateNaMascota"/>
+        <label class="form-label" >Fecha Nacimiento</label>
+      </div>
+  
+      <div class="form-outline mb-4">
+        <input type="text"  @bind="RegisterUser.direccion" class="form-control" />
+        <label class="form-label" >Direccion</label>
+      </div>
+
+      <!-- Submit button -->
+      <button type="submit" class="btn btn-primary btn-block mb-3" >Registro</button>
+    </EditForm>
+   
+  </div>
+  </div>
+  </div>
+@code {
+
+    RegistrooUsereDTO RegisterUser = new();
+    private string FechaUSer;
+    private LoginRespuestaDTO RespuestaUsers = new();
+    private string? Contrasenia;
+    private string? ContraseniaRepeat;
+    private async Task RegisterF()
+    {
+        try
+        {
+            if (await LoginF() == false)
+            {
+               
+                    RegisterUser.fecha_nacimiento = FechaUSer;
+                    var result = await https.Post("https://buscaperroapi.azurewebsites.net/api/Cuenta/RegistrarCuenta", RegisterUser);
+                    await mostrarMensajes.MostrarMensajeExitoso("Registro Exitoso.");
+
+            }
+            else
+            {
+                await mostrarMensajes.MostrarMensajeError("Registro no valido.");
+            }
+        }catch(Exception e)
+        {
+            await mostrarMensajes.MostrarMensajeError("Registro no valido.");
+        }
+
+    }
+   
+    private async Task<bool> LoginF()
+    {
+        var Datos = new LoginDTO { usuario = RegisterUser.email, contrasenia = RegisterUser.contrasenia };
+        var result = await https.Post<LoginDTO,LoginRespuestaDTO>("https://buscaperroapi.azurewebsites.net/api/Autentificacion/Login", Datos);
+        RespuestaUsers = result.Response;
+        AuthUser Auth = new();
+        if ( Auth.Authentication(RespuestaUsers))
+            return true;
+        else
+            return false;
+    }
+    private void DateNaMascota(ChangeEventArgs changeEventArgs)
+    {
+        var seleccion = changeEventArgs.Value;
+        FechaUSer = seleccion.ToString();
+       
+    }
+}

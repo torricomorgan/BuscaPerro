@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuscaPerro.Dal", "BuscaPerr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuscaPerro.Service", "BuscaPerro.Service\BuscaPerro.Service.csproj", "{FDD8EF49-C1CC-4175-BFA6-CA9A4BF9A556}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuscaPerro.Base", "BuscaPerro.Base\BuscaPerro.Base.csproj", "{053FC856-31BA-42C4-AFAD-6F10DED7AEC4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuscaPerro.Base", "BuscaPerro.Base\BuscaPerro.Base.csproj", "{053FC856-31BA-42C4-AFAD-6F10DED7AEC4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FormMascota", "FormMascota\FormMascota\FormMascota.csproj", "{3C222E10-2549-48DC-B9DB-6BAAB1E47514}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{053FC856-31BA-42C4-AFAD-6F10DED7AEC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{053FC856-31BA-42C4-AFAD-6F10DED7AEC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{053FC856-31BA-42C4-AFAD-6F10DED7AEC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C222E10-2549-48DC-B9DB-6BAAB1E47514}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C222E10-2549-48DC-B9DB-6BAAB1E47514}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C222E10-2549-48DC-B9DB-6BAAB1E47514}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C222E10-2549-48DC-B9DB-6BAAB1E47514}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

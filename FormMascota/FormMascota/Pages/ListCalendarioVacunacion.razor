@@ -1,0 +1,70 @@
+﻿@inject HttpClient http;
+@inject IRepositorio https;
+@using Blazored.LocalStorage;
+@using BuscaPerro.Domain.Vacunacion.DTO
+@inject Blazored.LocalStorage.ILocalStorageService localStore
+@inject NavigationManager navigationManager
+
+ <div>
+
+     <EditForm Model="valor" >
+
+        <table class="table table-bordered" >
+  <thead>
+      <th colspan="7" style="text-align:center;font-size:21px">Calendario de Vacunacion</th>
+    <tr>
+      <th scope="col">Vacuna</th>
+      <th scope="col">Fecha Aplicada</th>
+      <th scope="col">Fecha Prevista</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var item in vacunaCalendarios)
+    {
+        <tr>
+            <td>@item.nombre_vacuna</td>
+            <td>@item.fecha_aplicada</td>
+            <td>@item.fecha_prevista</td>
+        </tr>
+    }
+  </tbody>
+</table>
+
+      
+   </EditForm>
+</div>
+
+@code {
+   protected override async void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var ID_cuenta_string = await localStore.GetItemAsStringAsync("ID_USER");
+            if (ID_cuenta_string == null || ID_cuenta_string == "")
+            {
+                navigationManager.NavigateTo("/");
+            }
+            StateHasChanged();
+        }
+    }
+
+    public RegisterPetsDTO valor = new();
+    public List<VacunaCalendarioDTO> vacunaCalendarios = new();
+
+    public async Task IndexFuntion()
+    {
+        var Dato = await localStore.GetItemAsStringAsync("ID_USER");
+        var result = await https.Get<List<VacunaCalendarioDTO>>($"https://buscaperroapi.azurewebsites.net/api/Mascota/ListarVacunasMascota?idMascota={Dato}");
+        vacunaCalendarios = result.Response;
+    }
+    
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await IndexFuntion();
+            StateHasChanged();
+        }
+    }
+}

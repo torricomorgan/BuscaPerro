@@ -1,0 +1,193 @@
+﻿@page "/mascota"
+@using Blazored.LocalStorage;
+@using Microsoft.AspNetCore.Components.Rendering
+@inject Blazored.LocalStorage.ILocalStorageService localStore;
+@inject IRepositorio https;
+@inject IMostrarMensajes mostrarMensajes
+@inject NavigationManager navigationManager
+<PageTitle>Mascota</PageTitle>
+
+
+<div class="contenedor2">
+
+   <ul class="nav nav-pills  mb-3" id="ex1" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" href="/mascota" role="tab"
+      aria-controls="pills-login" aria-selected="true">Mascota</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="tab-register" data-mdb-toggle="pill" href="/enfermedad" role="tab"
+      aria-controls="pills-register" aria-selected="false">Enfermedad</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="tab-register" data-mdb-toggle="pill" href="/vacuna" role="tab"
+      aria-controls="pills-register" aria-selected="false">Vacuna</a>
+  </li>
+  <button class="btn btn-danger" style="position:absolute; right:5px;" @onclick="@LogoutF">Cerrar Sesion</button>
+</ul>
+
+<div class="ContenedorRegistro">
+    <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-RegistroM">
+    <EditForm Model="RegisterPetsData" OnValidSubmit="@Redireccion" >
+
+        <div class="form-outline mb-4">
+        <input type="text"  @bind="RegisterPetsData.nombre" class="form-control" />
+        <label class="form-label"  >Nombre</label>
+      </div>
+      <div class="form-outline mb-4">
+       <select class="form-control" onchange="@SexoMascota" value="@_toppingsIndex">
+        <option value="-1" disabled>(select)</option>
+        <option value="Femenino">Femenino</option>
+        <option value="Masculino">Masculino</option>
+        </select>
+        <label class="form-label"  >sexo</label>
+        </div>  
+      <div class="form-outline mb-4">
+        <input type="text"  @bind="RegisterPetsData.color" class="form-control" />
+        <label class="form-label"  >color</label>
+      </div>  
+        <div class="form-outline mb-4">
+        <input type="date"  class="form-control" onchange="@DateNaMascota"/>
+        <label class="form-label"  >fecha de nacimiento</label>
+      </div> 
+      <div class="form-outline mb-4">
+       <select class="form-control" onchange="@EspecieMascota" value="@_toppingsIndex">
+          <option value="-1" disabled>(select)</option>
+        @foreach (var item in DatosEspecieList)
+        {
+
+            <option value="@item.id_especie" >@item.nombre_comun</option>
+        }
+        
+        </select>
+        <label class="form-label" >Especie</label>
+        </div>
+        <div class="form-outline mb-4">
+        <select class="form-control" onchange="@RazaMascota" value="@_toppingsIndex">
+            <option value="-1" disabled>(select)</option>
+        @foreach (var item in DatosRazaList)
+        { 
+            <option value="@item.id_raza" >@item.nombre</option>
+        }
+        
+        </select>
+        <label class="form-label" >Raza</label>
+        </div>  
+      
+
+      <button type="submit"   class="btn btn-primary btn-block mb-4">Registrar Mascota</button>
+   </EditForm>
+  </div>
+</div>
+
+<div style="position:absolute;right:8%;top:5%;width:55%">
+    <ListPets></ListPets>
+</div>
+</div>
+
+@code {
+    protected override async void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var ID_cuenta_string = await localStore.GetItemAsStringAsync("ID_USER");
+            if (ID_cuenta_string == null || ID_cuenta_string == "")
+            {
+                navigationManager.NavigateTo("/");
+            }
+            StateHasChanged();
+        }
+    }
+    private string sexoMascota;
+    private string FechaMascota;
+    private int IDRaza;
+    private int Id_cuenta;
+    private RegisterPetsDTO RegisterPetsData = new();
+    private LoginRespuestaDTO DataLogin = new();
+    private readonly Int32 _toppingsIndex = -1;
+
+    List<RazasDTO> DatosRazaList = new();
+    List<EspeciesDTO> DatosEspecieList = new();
+
+    public async Task IndexFuntion()
+    {
+        var ID_cuenta_string = await localStore.GetItemAsStringAsync("ID_USER");
+
+        var result = await https.Get<List<EspeciesDTO>>($"https://buscaperroapi.azurewebsites.net/api/Mascota/RetornarEspecies");
+        DatosEspecieList = result.Response;
+
+    }
+    public async Task ListRaza(int IDespecie)
+    {
+
+        var result = await https.Get<List<RazasDTO>>($"https://buscaperroapi.azurewebsites.net/api/Mascota/RetornarRazasPorEspecie?idEspecia={IDespecie}");
+        DatosRazaList = result.Response;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+
+            await IndexFuntion();
+            StateHasChanged();
+        }
+    }
+
+    private async Task RegisterPetsF()
+    {
+
+            
+            var DatosEnvio = new RegisterPetsDTO
+                {
+                    nombre = RegisterPetsData.nombre,
+                    sexo = sexoMascota,
+                    color = RegisterPetsData.color,
+                    fecha_nacimiento = FechaMascota,
+                    id_cuenta = Id_cuenta,
+                    id_raza = IDRaza
+                };
+            var result = await https.Post("https://buscaperroapi.azurewebsites.net/api/Mascota/RegistrarMascota", DatosEnvio);
+            await mostrarMensajes.MostrarMensajeExitoso("Registro Exitoso.");
+            StateHasChanged();
+            navigationManager.NavigateTo("/mascota",true);
+    }
+
+    private async void Redireccion()
+    {
+        var ID_cuenta_string = await localStore.GetItemAsStringAsync("ID_USER");
+            Id_cuenta = int.Parse(ID_cuenta_string);
+        await RegisterPetsF();
+    }
+
+
+    private async Task LogoutF()
+    {
+        await localStore.ClearAsync();
+        navigationManager.NavigateTo("/");
+    }
+    private void SexoMascota(ChangeEventArgs changeEventArgs)
+    {
+        var seleccion = changeEventArgs.Value;
+        sexoMascota = seleccion.ToString();
+
+    }
+    private void DateNaMascota(ChangeEventArgs changeEventArgs)
+    {
+        var seleccion = changeEventArgs.Value;
+        FechaMascota = seleccion.ToString();
+    }
+    private async void EspecieMascota(ChangeEventArgs changeEventArgs)
+    {
+        int seleccion = int.Parse(changeEventArgs.Value.ToString());
+        await ListRaza(seleccion);
+        StateHasChanged();
+    }
+    private void RazaMascota(ChangeEventArgs changeEventArgs)
+    {
+        int seleccion = int.Parse(changeEventArgs.Value.ToString());
+        IDRaza = seleccion;
+        StateHasChanged();
+    }
+ 
+}

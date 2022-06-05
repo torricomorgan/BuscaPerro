@@ -1,0 +1,81 @@
+﻿@inject HttpClient http;
+@inject IRepositorio https;
+@using Blazored.LocalStorage;
+@inject Blazored.LocalStorage.ILocalStorageService localStore
+@inject NavigationManager navigationManager
+
+
+
+@code {
+    protected override async void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var ID_cuenta_string = await localStore.GetItemAsStringAsync("ID_USER");
+            if (ID_cuenta_string == null || ID_cuenta_string == "")
+            {
+                navigationManager.NavigateTo("/");
+            }
+            StateHasChanged();
+        }
+    }
+   
+
+    public RegisterPetsDTO valor = new();
+    public List<MascotaListDTO> DatosMascotaList = new();
+
+    public async Task IndexFuntion()
+    {
+        var Dato = await localStore.GetItemAsStringAsync("ID_USER");
+        var result = await https.Get<List<MascotaListDTO>>($"https://buscaperroapi.azurewebsites.net/api/Mascota/ListarMascotasPorCuenta?idCuenta={Dato}");
+        DatosMascotaList = result.Response;
+    }
+    
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await IndexFuntion();
+            StateHasChanged();
+        }
+    }
+
+    }
+    <div>
+
+     <EditForm Model="valor" >
+
+        <table class="table table-bordered" >
+  <thead>
+      <th colspan="7" style="text-align:center;font-size:21px">Lista de mascotas</th>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Sexo</th>
+      <th scope="col">Color</th>
+      <th scope="col">Fecha Nacimiento</th>
+      <th scope="col">Nombre Dueño</th>
+      <th scope="col">Especie</th>
+      <th scope="col">Raza</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var item in DatosMascotaList)
+    {
+        <tr>
+            <td>@item.nombre</td>
+            <td>@item.sexo</td>
+            <td>@item.color</td>
+            <td>@item.fecha_nacimiento</td>
+            <td>@item.nombre_dueno</td>
+            <td>@item.nombre_especie</td>
+            <td>@item.nombre_raza</td>
+        </tr>
+    }
+  </tbody>
+</table>
+
+      
+   </EditForm>
+</div>
+

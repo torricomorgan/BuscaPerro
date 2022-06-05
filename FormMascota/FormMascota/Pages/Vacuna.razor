@@ -1,0 +1,184 @@
+﻿@page "/vacuna"
+@using Blazored.LocalStorage;
+@using BuscaPerro.Domain.Mascota.DTO
+@using BuscaPerro.Domain.Vacunacion.DTO
+@using BuscaPerro.Domain.Vacunacion.Models
+@using Microsoft.AspNetCore.Components.Rendering
+@inject Blazored.LocalStorage.ILocalStorageService localStore;
+@inject IRepositorio https;
+@inject IMostrarMensajes mostrarMensajes
+@inject NavigationManager navigationManager
+<PageTitle>Vacuna</PageTitle>
+
+
+
+<div class="contenedor2">
+
+   <ul class="nav nav-pills  mb-3" id="ex1" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" href="/mascota" role="tab"
+      aria-controls="pills-login" aria-selected="false">Mascota</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="tab-register" data-mdb-toggle="pill" href="/enfermedad" role="tab"
+      aria-controls="pills-register" aria-selected="false">Enfermedad</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="tab-register" data-mdb-toggle="pill" href="/vacuna" role="tab"
+      aria-controls="pills-register" aria-selected="true">Vacuna</a>
+  </li>
+  <button class="btn btn-danger" style="position:absolute; right:5px;" @onclick="@LogoutF">Cerrar Sesion</button>
+</ul>
+
+<div class="ContenedorRegistro">
+
+    <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-RegistroM">
+    <EditForm Model="parRegistrarVacunaCalendario" OnValidSubmit="@Redireccion" >
+
+       <div class="form-outline mb-4">
+        <input type="date"  class="form-control" onchange="@DateNaAplicada"/>
+        <label class="form-label"  >Fecha Aplicada</label>
+      </div> 
+      <div class="form-outline mb-4">
+        <input type="date"  class="form-control" onchange="@DateNaPrevista"/>
+        <label class="form-label"  >Fecha Prevista</label>
+      </div> 
+
+       <div class="form-outline mb-4">
+       <select class="form-control" onchange="@MascotasPorCuenta" value="@_toppingsIndex">
+          <option value="-1" disabled>(select)</option>
+        @foreach (var item in listaMascotas)
+        {
+
+            <option value="@item.id_mascota" >@item.nombre</option>
+        }
+        
+        </select>
+        <label class="form-label" >Mascota</label>
+       </div>
+
+        <div class="form-outline mb-4">
+        <select class="form-control" onchange="@Vacunas" value="@_toppingsIndex">
+            <option value="-1" disabled>(select)</option>
+        @foreach (var item in listaVacunas)
+        {
+            <option value="@item.id_vacuna" >@item.nombre</option>
+        }
+        
+        </select>
+        <label class="form-label" >Vacuna</label>
+        </div>  
+      
+
+      <button type="submit"   class="btn btn-primary btn-block mb-4">Registrar Mascota</button>
+   </EditForm>
+  </div>
+</div>
+
+</div>
+
+@code {
+    private readonly Int32 _toppingsIndex = -1;
+    List<MascotaDTO> listaMascotas = new();
+    List<VacunaDTO> listaVacunas = new();
+    ParRegistrarVacunaCalendario parRegistrarVacunaCalendario = new();
+    public List<VacunaCalendarioDTO> vacunaCalendarios = new();
+    private string FechaAplicada;
+    private string FechaPrevista;
+    private int Id_cuenta;
+    private int idVacuna;
+    private int idMascota;
+
+    protected override async void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var ID_cuenta_string = await localStore.GetItemAsStringAsync("ID_USER");
+            if (ID_cuenta_string == null || ID_cuenta_string == "")
+            {
+                navigationManager.NavigateTo("/");
+            }
+            StateHasChanged();
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+
+            await IndexFuntion();
+            StateHasChanged();
+        }
+    }
+
+    private async void Redireccion()
+    {
+        var ID_cuenta_string = await localStore.GetItemAsStringAsync("ID_USER");
+        Id_cuenta = int.Parse(ID_cuenta_string);
+        await RegisterVacunaMascota();
+    }
+
+    private async Task RegisterVacunaMascota()
+    {
+
+
+        var DatosEnvio = new ParRegistrarVacunaCalendario
+                {
+                    fecha_aplicada = DateTime.Parse(FechaAplicada),
+                    fecha_prevista = DateTime.Parse(FechaPrevista),
+                    id_mascota = idMascota,
+                    id_vacuna = idVacuna
+                };
+        var result = await https.Post("https://buscaperroapi.azurewebsites.net/api/Mascota/RegistrarVacunaMascota", DatosEnvio);
+        await mostrarMensajes.MostrarMensajeExitoso("Registro Exitoso.");
+        StateHasChanged();
+        navigationManager.NavigateTo("/vacuna",true);
+    }
+
+    private void DateNaAplicada(ChangeEventArgs changeEventArgs)
+    {
+        var seleccion = changeEventArgs.Value;
+        FechaAplicada = seleccion.ToString();
+    }
+
+    private void DateNaPrevista(ChangeEventArgs changeEventArgs)
+    {
+        var seleccion = changeEventArgs.Value;
+        FechaPrevista = seleccion.ToString();
+    }
+
+    public async Task IndexFuntion()
+    {
+        var ID_cuenta_string = await localStore.GetItemAsStringAsync("ID_USER");
+        Id_cuenta = int.Parse(ID_cuenta_string);
+        var result = await https.Get<List<MascotaDTO>>($"https://buscaperroapi.azurewebsites.net/api/Mascota/ListarMascotasPorCuenta?idCuenta={Id_cuenta}");
+        listaMascotas = result.Response;
+        await ListVacunas();
+    }
+
+    private async void MascotasPorCuenta(ChangeEventArgs changeEventArgs)
+    {
+        await IndexFuntion();
+    }
+
+    public async Task ListVacunas()
+    {
+        var result = await https.Get<List<VacunaDTO>>($"https://buscaperroapi.azurewebsites.net/api/Vacunacion/ListarVacunas");
+        listaVacunas = result.Response;
+        StateHasChanged();
+    }
+
+    private void Vacunas(ChangeEventArgs changeEventArgs)
+    {
+        int seleccion = int.Parse(changeEventArgs.Value.ToString());
+        idVacuna = seleccion;
+        StateHasChanged();
+    }
+
+    private async Task LogoutF()
+    {
+        await localStore.ClearAsync();
+        navigationManager.NavigateTo("/");
+    }
+}

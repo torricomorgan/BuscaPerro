@@ -36,7 +36,12 @@ namespace BuscaPerroApi.Controllers.Enfermedad
         [HttpGet]
         public async Task<ActionResult<IEnumerable<HistoricoEnfermedadDTO>>> ListarEnfermedadesMascota(int idMascota)
         {
-            return Ok(await this.enfermedadService.ListarHistoricoEnfermedad(idMascota));
+            return Ok(await this.enfermedadService.ListarHistoricoEnfermedadPorMascota(idMascota));
+        }
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<HistoricoEnfermedadDTO>>> ListarEnfermedadesMascotaPorCuenta(int idCuenta)
+        {
+            return Ok(await this.enfermedadService.ListarHistoricoEnfermedadPorCuenta(idCuenta));
         }
     }
 }

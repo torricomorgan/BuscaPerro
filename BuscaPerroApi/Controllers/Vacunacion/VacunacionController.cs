@@ -36,7 +36,12 @@ namespace BuscaPerroApi.Controllers.Vacunacion
         [HttpGet]
         public async Task<ActionResult<IEnumerable<VacunaCalendarioDTO>>> ListarVacunasMascota(int idMascota)
         {
-            return Ok(await this.vacunacionService.ListarCalendarioVacunas(idMascota));
+            return Ok(await this.vacunacionService.ListarCalendarioVacunaPorMascota(idMascota));
+        }
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<VacunaCalendarioDTO>>> ListarVacunasMascotaCuenta(int idCuenta)
+        {
+            return Ok(await this.vacunacionService.ListarCalendarioVacunasPorCuenta(idCuenta));
         }
         [HttpPost]
         public async Task<ActionResult<bool>> RegistrarProveedores([FromBody] ParRegistrarProveedor parRegistrarProveedor)

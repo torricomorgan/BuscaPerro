@@ -13,7 +13,8 @@ namespace BuscaPerro.Domain.Enfermedad.Interfaces.Services
     {
         Task<bool> RegistrarEnfermedad(ParRegistrarEnfermedad parRegistrarEnfermedad);
         Task<bool> RegistrarEnfermedadHistorico(ParRegistrarHistoricoEnfermedad parRegistrarHistoricoEnfermedad);
-        Task<IEnumerable<HistoricoEnfermedadDTO>> ListarHistoricoEnfermedad(int idMascota);
+        Task<IEnumerable<HistoricoEnfermedadDTO>> ListarHistoricoEnfermedadPorMascota(int idMascota);
+        Task<IEnumerable<HistoricoEnfermedadDTO>> ListarHistoricoEnfermedadPorCuenta(int idCuenta);
         Task<IEnumerable<EnfermedadEntity>> ListarEnfermedades();
     }
 }

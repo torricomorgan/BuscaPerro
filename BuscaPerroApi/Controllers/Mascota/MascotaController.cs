@@ -29,7 +29,7 @@ namespace BuscaPerroApi.Controllers.Mascota
             return Ok(await this.mascotaService.PerfilMascota(idMascota));
         }
         [HttpGet]
-        public async Task<ActionResult<RazaEntity>> ListarMascotasPorCuenta(int idCuenta)
+        public async Task<ActionResult<MascotaDTO>> ListarMascotasPorCuenta(int idCuenta)
         {
             return Ok(await this.mascotaService.ListarMascotaPorCuenta(idCuenta));
         }

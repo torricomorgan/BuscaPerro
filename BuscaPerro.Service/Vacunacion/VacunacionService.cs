@@ -85,7 +85,7 @@ namespace BuscaPerro.Service.Vacunacion
             return result;
         }
 
-        public async Task<IEnumerable<VacunaCalendarioDTO>> ListarCalendarioVacunas(int idMascota)
+        public async Task<IEnumerable<VacunaCalendarioDTO>> ListarCalendarioVacunaPorMascota(int idMascota)
         {
             #region Variables
             IEnumerable<VacunaCalendarioDTO> vacunasCalendario = Enumerable.Empty<VacunaCalendarioDTO>();
@@ -94,6 +94,23 @@ namespace BuscaPerro.Service.Vacunacion
             try
             {
                 vacunasCalendario = await calendarioRepository.ObtenerVacunasMascota(idMascota);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return vacunasCalendario;
+        }
+
+        public async Task<IEnumerable<VacunaCalendarioDTO>> ListarCalendarioVacunasPorCuenta(int idCuenta)
+        {
+            #region Variables
+            IEnumerable<VacunaCalendarioDTO> vacunasCalendario = Enumerable.Empty<VacunaCalendarioDTO>();
+            #endregion
+
+            try
+            {
+                vacunasCalendario = await calendarioRepository.ObtenerVacunasMascotaCuenta(idCuenta);
             }
             catch (Exception ex)
             {

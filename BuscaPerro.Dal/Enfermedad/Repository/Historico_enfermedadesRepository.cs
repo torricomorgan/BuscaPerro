@@ -24,5 +24,19 @@ namespace BuscaPerro.Dal.Enfermedad.Repository
             sql = string.Format(sql, idMascota);
             return await this.Query<HistoricoEnfermedadDTO>(sql);
         }
+        public async Task<IEnumerable<HistoricoEnfermedadDTO>> ObtenerHistoricoMascotaCuenta(int idCuenta)
+        {
+            string sql = @" select
+                                he.*,
+                                e.nombre AS nombre_enfermedad,
+                                m.nombre AS nombre_mascota
+                            from dbo.historico_enfermedades AS he
+                            inner join dbo.enfermedad AS e on he.id_enfermedad = e.id_enfermedad
+                            inner join dbo.mascota AS m on he.id_mascota = m.id_mascota
+                            where m.id_cuenta = {0};";
+
+            sql = string.Format(sql, idCuenta);
+            return await this.Query<HistoricoEnfermedadDTO>(sql);
+        }
     }
 }

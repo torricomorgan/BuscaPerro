@@ -7,5 +7,6 @@ namespace BuscaPerro.Domain.Interfaz.Enfermedad.Repository
     public  interface IHistorico_enfermedadesRepository: IGenericRepository<Historico_enfermedadesEntity>
     {
         Task<IEnumerable<HistoricoEnfermedadDTO>> ObtenerHistoricoMascota(int idMascota);
+        Task<IEnumerable<HistoricoEnfermedadDTO>> ObtenerHistoricoMascotaCuenta(int idCuenta);
     }
 }

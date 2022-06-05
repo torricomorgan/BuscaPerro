@@ -7,5 +7,6 @@ namespace BuscaPerro.Domain.Interfaz.Vacunacion.Repository
     public  interface ICalendario_vacunacionRepository: IGenericRepository<Calendario_vacunacionEntity>
     {
         Task<IEnumerable<VacunaCalendarioDTO>> ObtenerVacunasMascota(int idMascota);
+        Task<IEnumerable<VacunaCalendarioDTO>> ObtenerVacunasMascotaCuenta(int idCuenta);
     }
 }
