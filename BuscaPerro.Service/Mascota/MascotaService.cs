@@ -218,7 +218,7 @@ namespace BuscaPerro.Service.Mascota
             return result;
         }
 
-        public async Task<IEnumerable<RazaEntity>> RetornarRazas(int idEspecie)
+        public async Task<IEnumerable<RazaEntity>> RetornarRazasPorEspecie(int idEspecie)
         {
             #region Variables
             IEnumerable<RazaEntity> razas = Enumerable.Empty<RazaEntity>();
@@ -230,6 +230,22 @@ namespace BuscaPerro.Service.Mascota
                 busqueda.Add(nameof(RazaEntity.id_especie), idEspecie);
 
                 razas = await razaRepository.SearchByFieldsDictionary(busqueda);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return razas;
+        }
+        public async Task<IEnumerable<RazaEntity>> RetornarRazas()
+        {
+            #region Variables
+            IEnumerable<RazaEntity> razas = Enumerable.Empty<RazaEntity>();
+            #endregion
+
+            try
+            {
+                razas = await razaRepository.GetAll();
             }
             catch (Exception ex)
             {
