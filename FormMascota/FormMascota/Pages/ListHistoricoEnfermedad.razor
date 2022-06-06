@@ -1,6 +1,7 @@
 ﻿@inject HttpClient http;
 @inject IRepositorio https;
 @using Blazored.LocalStorage;
+@using BuscaPerro.Domain.Enfermedad.DTO
 @using BuscaPerro.Domain.Vacunacion.DTO
 @inject Blazored.LocalStorage.ILocalStorageService localStore
 @inject NavigationManager navigationManager
@@ -23,12 +24,12 @@
    
 
     public RegisterPetsDTO valor = new();
-    public List<VacunaCalendarioDTO> DatosMascotaList = new();
+    public List<HistoricoEnfermedadDTO> DatosMascotaList = new();
 
     public async Task IndexFuntion()
     {
         var Dato = await localStore.GetItemAsStringAsync("ID_USER");
-        var result = await https.Get<List<VacunaCalendarioDTO>>($"https://buscaperroapi.azurewebsites.net/api/Vacunacion/ListarVacunasMascotaCuenta?idCuenta={Dato}");
+        var result = await https.Get<List<HistoricoEnfermedadDTO>>($"https://buscaperroapi.azurewebsites.net/api/Enfermedad/ListarEnfermedadesMascotaPorCuenta?idCuenta={Dato}");
         DatosMascotaList = result.Response;
     }
     
@@ -52,9 +53,9 @@
       <th colspan="7" style="text-align:center;font-size:21px">Lista de mascotas</th>
     <tr>
       <th scope="col">Nombre Mascota</th>
-      <th scope="col">Nombre Vacuna</th>
-      <th scope="col">Fecha Aplicada</th>
-      <th scope="col">Fecha Prevista</th>
+      <th scope="col">Nombre Enfermedad</th>
+      <th scope="col">Fecha Tratada</th>
+      <th scope="col">Tratamiento aplicado</th>
     </tr>
   </thead>
   <tbody>
@@ -62,9 +63,9 @@
     {
         <tr>
             <td>@item.nombre_mascota</td>
-            <td>@item.nombre_vacuna</td>
-            <td>@item.fecha_aplicada.Value.ToString("dd MMM yyyy")</td>
-            <td>@item.fecha_prevista.Value.ToString("dd MMM yyyy")</td>
+            <td>@item.nombre_enfermedad</td>
+            <td>@item.fecha.ToString("dd MMM yyyy")</td>
+            <td>@item.tratamiento_aplicado</td>
         </tr>
     }
   </tbody>

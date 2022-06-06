@@ -1,5 +1,9 @@
 ﻿@page "/enfermedad"
 @using Blazored.LocalStorage;
+@using BuscaPerro.Domain.Enfermedad.DTO
+@using BuscaPerro.Domain.Enfermedad.Entidad
+@using BuscaPerro.Domain.Enfermedad.Models
+@using BuscaPerro.Domain.Mascota.DTO
 @using Microsoft.AspNetCore.Components.Rendering
 @inject Blazored.LocalStorage.ILocalStorageService localStore;
 @inject IRepositorio https;
@@ -25,10 +29,150 @@
   <button class="btn btn-danger" style="position:absolute; right:5px;" @onclick="@LogoutF">Cerrar Sesion</button>
 </ul>
 
+<div class="ContenedorRegistro">
+
+    <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-RegistroM">
+    <EditForm Model="parRegistrarHistoricoEnfermedad" OnValidSubmit="@Redireccion" >
+
+      <div class="form-outline mb-4">
+        <input type="date"  class="form-control" onchange="@DateNaTratada"/>
+        <label class="form-label"  >Fecha Tratada</label>
+      </div> 
+
+       <div class="form-outline mb-4">
+       <select class="form-control" onchange="@MascotasPorCuenta" value="@_toppingsIndex">
+          <option value="-1" disabled>(select)</option>
+        @foreach (var item in listaMascotas)
+        {
+
+            <option value="@item.id_mascota" >@item.nombre</option>
+        }
+        
+        </select>
+        <label class="form-label" >Mascota</label>
+       </div>
+
+        <div class="form-outline mb-4">
+        <select class="form-control" onchange="@Enfermedades" value="@_toppingsIndex">
+            <option value="-1" disabled>(select)</option>
+        @foreach (var item in listaEnfermedades)
+        {
+            <option value="@item.id_enfermedad" >@item.nombre</option>
+        }
+        
+        </select>
+        <label class="form-label" >Enfermedades</label>
+        </div>  
+       <div class="form-outline mb-4">
+        <input type="text"  @bind="parRegistrarHistoricoEnfermedad.tratamiento_aplicado" class="form-control" />
+        <label class="form-label"  >Tratamiento aplicado</label>
+      </div>
+
+      <button type="submit"   class="btn btn-primary btn-block mb-4">Registrar Mascota</button>
+   </EditForm>
+  </div>
+</div>
+
+<div style="position:absolute;right:8%;top:5%;width:55%">
+    <ListHistoricoEnfermedad></ListHistoricoEnfermedad>
+</div>
 
 </div>
 
 @code {
+
+private readonly Int32 _toppingsIndex = -1;
+    List<MascotaDTO> listaMascotas = new();
+    List<EnfermedadEntity> listaEnfermedades = new();
+    ParRegistrarHistoricoEnfermedad parRegistrarHistoricoEnfermedad = new();
+    public List<HistoricoEnfermedadDTO> historicoEnfermedad = new();
+    private string FechaTratada;
+    private int Id_cuenta;
+    private int idEnfermedad;
+    private int idMascota;
+
+    protected override async void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var ID_cuenta_string = await localStore.GetItemAsStringAsync("ID_USER");
+            if (ID_cuenta_string == null || ID_cuenta_string == "")
+            {
+                navigationManager.NavigateTo("/");
+            }
+            StateHasChanged();
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+
+            await IndexFuntion();
+            StateHasChanged();
+        }
+    }
+
+    private async void Redireccion()
+    {
+        var ID_cuenta_string = await localStore.GetItemAsStringAsync("ID_USER");
+        Id_cuenta = int.Parse(ID_cuenta_string);
+        await RegisterVacunaMascota();
+    }
+
+    private async Task RegisterVacunaMascota()
+    {
+
+
+        var DatosEnvio = new ParRegistrarHistoricoEnfermedad
+                {
+                    tratamiento_aplicado = parRegistrarHistoricoEnfermedad.tratamiento_aplicado,
+                    fecha = DateTime.Parse(FechaTratada),
+                    id_mascota = idMascota,
+                    id_enfermedad = idEnfermedad
+                };
+        var result = await https.Post("https://buscaperroapi.azurewebsites.net/api/Enfermedad/RegistrarEnfermedadMascota", DatosEnvio);
+        await mostrarMensajes.MostrarMensajeExitoso("Registro Exitoso.");
+        StateHasChanged();
+        navigationManager.NavigateTo("/enfermedad",true);
+    }
+
+    private void DateNaTratada(ChangeEventArgs changeEventArgs)
+    {
+        var seleccion = changeEventArgs.Value;
+        FechaTratada = seleccion.ToString();
+    }
+
+    public async Task IndexFuntion()
+    {
+        var ID_cuenta_string = await localStore.GetItemAsStringAsync("ID_USER");
+        Id_cuenta = int.Parse(ID_cuenta_string);
+        var result = await https.Get<List<MascotaDTO>>($"https://buscaperroapi.azurewebsites.net/api/Mascota/ListarMascotasPorCuenta?idCuenta={Id_cuenta}");
+        listaMascotas = result.Response;
+        await ListEnfermedades();
+    }
+
+    private async void MascotasPorCuenta(ChangeEventArgs changeEventArgs)
+    {
+        int seleccion = int.Parse(changeEventArgs.Value.ToString());
+        idMascota = seleccion;
+        await IndexFuntion();
+    }
+
+    public async Task ListEnfermedades()
+    {
+        var result = await https.Get<List<EnfermedadEntity>>($"https://buscaperroapi.azurewebsites.net/api/Enfermedad/ListarEnfermedades");
+        listaEnfermedades = result.Response;
+        StateHasChanged();
+    }
+
+    private void Enfermedades(ChangeEventArgs changeEventArgs)
+    {
+        int seleccion = int.Parse(changeEventArgs.Value.ToString());
+        idEnfermedad = seleccion;
+        StateHasChanged();
+    }
 
     private async Task LogoutF()
     {
