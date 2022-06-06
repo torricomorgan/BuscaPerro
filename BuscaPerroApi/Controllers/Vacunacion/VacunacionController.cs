@@ -53,10 +53,5 @@ namespace BuscaPerroApi.Controllers.Vacunacion
         {
             return Ok(await this.vacunacionService.ListarProveedoresVacunas());
         }
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<UbicacionVeterinariasDTO>>> ListarVeterinariasCercanas()
-        {
-            return Ok(await this.vacunacionService.ListarVeterinariasCercanas());
-        }
     }
 }

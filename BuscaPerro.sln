@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuscaPerro.Domain", "BuscaP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuscaPerro.Dal", "BuscaPerro.Dal\BuscaPerro.Dal.csproj", "{623FC9C9-C984-4F55-AB1C-92C8064EEB5B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuscaPerro.Service", "BuscaPerro.Service\BuscaPerro.Service.csproj", "{FDD8EF49-C1CC-4175-BFA6-CA9A4BF9A556}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuscaPerro.Base", "BuscaPerro.Base\BuscaPerro.Base.csproj", "{053FC856-31BA-42C4-AFAD-6F10DED7AEC4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FormMascota", "FormMascota\FormMascota\FormMascota.csproj", "{3C222E10-2549-48DC-B9DB-6BAAB1E47514}"
@@ -33,10 +31,6 @@ Global
 		{623FC9C9-C984-4F55-AB1C-92C8064EEB5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{623FC9C9-C984-4F55-AB1C-92C8064EEB5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{623FC9C9-C984-4F55-AB1C-92C8064EEB5B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FDD8EF49-C1CC-4175-BFA6-CA9A4BF9A556}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FDD8EF49-C1CC-4175-BFA6-CA9A4BF9A556}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FDD8EF49-C1CC-4175-BFA6-CA9A4BF9A556}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FDD8EF49-C1CC-4175-BFA6-CA9A4BF9A556}.Release|Any CPU.Build.0 = Release|Any CPU
 		{053FC856-31BA-42C4-AFAD-6F10DED7AEC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{053FC856-31BA-42C4-AFAD-6F10DED7AEC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{053FC856-31BA-42C4-AFAD-6F10DED7AEC4}.Release|Any CPU.ActiveCfg = Release|Any CPU

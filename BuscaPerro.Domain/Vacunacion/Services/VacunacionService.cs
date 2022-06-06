@@ -12,7 +12,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Transactions;
 
-namespace BuscaPerro.Service.Vacunacion
+namespace BuscaPerro.Domain.Vacunacion.Services
 {
     public class VacunacionService : IVacunacionService
     {
@@ -179,41 +179,5 @@ namespace BuscaPerro.Service.Vacunacion
             }
             return proveedores;
         }
-
-        public async Task<IEnumerable<UbicacionVeterinariasDTO>> ListarVeterinariasCercanas()
-        {
-            #region Variables
-            List<UbicacionVeterinariasDTO> lista = new List<UbicacionVeterinariasDTO>();
-            HttpClient client = new HttpClient();
-            string json = String.Empty;
-            #endregion
-
-            try
-            {
-                json = await client.GetStringAsync("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-17.799084,-63.173673&radius=1500&type=veterinary_care&key=AIzaSyD4cfvPvSKAlc_LBuvugnFvaeXdo-2BD2U");
-                var aux = JsonSerializer.Deserialize<Rootobject>(json);
-                if (aux != null)
-                {
-                    foreach (var vet in aux.results)
-                    {
-                        var ubicacionVeterinaria = new UbicacionVeterinariasDTO();
-                        ubicacionVeterinaria.name = vet.name;
-                        ubicacionVeterinaria.business_status = vet.business_status;
-                        ubicacionVeterinaria.user_ratings_total = vet.user_ratings_total;
-                        ubicacionVeterinaria.rating = vet.rating;
-                        ubicacionVeterinaria.vicinity = vet.vicinity;
-                        ubicacionVeterinaria.lat = vet.geometry.location.lat;
-                        ubicacionVeterinaria.lng = vet.geometry.location.lng;
-                        lista.Add(ubicacionVeterinaria);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-
-            }
-            return lista.AsEnumerable();
-        }
-
     }
 }

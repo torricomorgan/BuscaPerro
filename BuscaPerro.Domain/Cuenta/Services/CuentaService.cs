@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 
-namespace BuscaPerro.Service.Cuenta
+namespace BuscaPerro.Domain.Cuenta.Services
 {
     public class CuentaService : ICuentaService
     {

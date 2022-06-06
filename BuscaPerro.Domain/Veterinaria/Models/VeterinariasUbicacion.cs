@@ -1,5 +1,5 @@
 ﻿
-namespace BuscaPerro.Domain.Vacunacion.Models
+namespace BuscaPerro.Domain.Veterinaria.Models
 {
     public class Rootobject
     {

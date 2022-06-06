@@ -22,7 +22,6 @@
   <ItemGroup>
     <ProjectReference Include="..\BuscaPerro.Dal\BuscaPerro.Dal.csproj" />
     <ProjectReference Include="..\BuscaPerro.Domain\BuscaPerro.Domain.csproj" />
-    <ProjectReference Include="..\BuscaPerro.Service\BuscaPerro.Service.csproj" />
   </ItemGroup>
 
 </Project>

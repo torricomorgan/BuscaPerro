@@ -16,6 +16,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.18.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BuscaPerro.Base\BuscaPerro.Base.csproj" />
   </ItemGroup>
 

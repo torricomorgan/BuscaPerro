@@ -14,4 +14,12 @@
     <ProjectReference Include="..\BuscaPerro.Domain\BuscaPerro.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Autotentificacion\" />
+    <Folder Include="Cuenta\" />
+    <Folder Include="Enfermedad\" />
+    <Folder Include="Mascota\" />
+    <Folder Include="Vacunacion\" />
+  </ItemGroup>
+
 </Project>

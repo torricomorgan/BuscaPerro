@@ -14,7 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Security.Claims;
 
-namespace BuscaPerro.Service.Autotentificacion
+namespace BuscaPerro.Domain.Autotentificacion.Services
 {
     public class AutorizacionService : IAutorizacionService
     {

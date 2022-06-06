@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 
-namespace BuscaPerro.Service.Enfermedad
+namespace BuscaPerro.Domain.Enfermedad.Services
 {
     public class EnfermedadService : IEnfermedadService
     {

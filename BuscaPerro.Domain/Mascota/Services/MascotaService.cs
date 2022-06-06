@@ -12,7 +12,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Transactions;
 
-namespace BuscaPerro.Service.Mascota
+namespace BuscaPerro.Domain.Mascota.Services
 {
     public class MascotaService : IMascotaService
     {
