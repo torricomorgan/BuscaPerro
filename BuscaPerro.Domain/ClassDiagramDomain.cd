@@ -1,0 +1,392 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BuscaPerro.Domain.Autentificacion.DTO.AutorizacionDTO">
+    <Position X="29.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAACAAEAAAAAAAAg=</HashCode>
+      <FileName>Autentificacion\DTO\AutorizacionDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuscaPerro.Domain.Autentificacion.Models.ParLogIn">
+    <Position X="15.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Autentificacion\Models\ParLogIn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuscaPerro.Domain.Autotentificacion.Services.AutorizacionService" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="10.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAgAGAAAAAAAA=</HashCode>
+      <FileName>Autentificacion\Services\AutorizacionService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Right" Position="1.312" />
+  </Class>
+  <Class Name="BuscaPerro.Domain.Cuenta.DTO.CuentaDTO">
+    <Position X="33" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAIACgAAgAAAAAAAAAAASAAAAAAAAAAAo=</HashCode>
+      <FileName>Cuenta\DTO\CuentaDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuscaPerro.Domain.Cuenta.Entidad.CuentaEntity">
+    <Position X="7.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAAAAAAAAAAASAAAAAAAAAAAg=</HashCode>
+      <FileName>Cuenta\Entities\CuentaEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuscaPerro.Domain.Cuenta.Entidad.PersonaEntity">
+    <Position X="9.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAIACgAAgAAAAAAAAAAAAAAAAAAAAAAAo=</HashCode>
+      <FileName>Cuenta\Entities\PersonaEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuscaPerro.Domain.Cuenta.Models.ParRegistrarCuenta">
+    <Position X="17.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAQAIACgAAgAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Cuenta\Models\ParRegistrarCuenta.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuscaPerro.Domain.Cuenta.Services.CuentaService" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="10.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAgACAAAAAAAA=</HashCode>
+      <FileName>Cuenta\Services\CuentaService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Left" Position="1.203" />
+  </Class>
+  <Class Name="BuscaPerro.Domain.Enfermedad.DTO.EnfermedadDTO">
+    <Position X="37.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAACAAAEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enfermedad\DTO\EnfermedadDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuscaPerro.Domain.Enfermedad.DTO.HistoricoEnfermedadDTO">
+    <Position X="29.75" Y="6.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEARAAAAABAAAAAgAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Enfermedad\DTO\HistoricoEnfermedadDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuscaPerro.Domain.Enfermedad.Entidad.EnfermedadEntity">
+    <Position X="1.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAACAAAEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enfermedad\Entities\EnfermedadEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuscaPerro.Domain.Enfermedad.Entidad.Historico_enfermedadesEntity">
+    <Position X="3.75" Y="8" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAQAAAAABAAAAAAAAAAAAAAQAAAAQAAAAAAA=</HashCode>
+      <FileName>Enfermedad\Entities\Historico_enfermedadesEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuscaPerro.Domain.Enfermedad.Models.ParRegistrarEnfermedad">
+    <Position X="24" Y="1" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enfermedad\Models\ParRegistrarEnfermedad.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuscaPerro.Domain.Enfermedad.Models.ParRegistrarHistoricoEnfermedad">
+    <Position X="20.75" Y="1" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAQAAAAAAAAAAAAAAAAAAAAQAAAAQAAAAAAA=</HashCode>
+      <FileName>Enfermedad\Models\ParRegistrarHistoricoEnfermedad.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuscaPerro.Domain.Enfermedad.Services.EnfermedadService" BaseTypeListCollapsed="true">
+    <Position X="5" Y="13.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAADAAAAAAAAQAAAAAAEAgAAAAAEAAAA=</HashCode>
+      <FileName>Enfermedad\Services\EnfermedadService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Left" Position="1.47" />
+  </Class>
+  <Class Name="BuscaPerro.Domain.Mascota.DTO.HistoricoPesoDTO">
+    <Position X="33.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEEAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Mascota\DTO\HistoricoPesoDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuscaPerro.Domain.Mascota.DTO.MascotaDTO">
+    <Position X="35.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACBAACAAAgAAAgAAAAAAASAAAAAAAAACAA=</HashCode>
+      <FileName>Mascota\DTO\MascotaDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuscaPerro.Domain.Mascota.DTO.UbicacionMascotaDTO">
+    <Position X="37.5" Y="0.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAQAAAAEAAAAAAAAAAAIAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Mascota\DTO\UbicacionMascotaDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuscaPerro.Domain.Mascota.Entidad.EspecieEntity">
+    <Position X="10.5" Y="7.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Mascota\Entities\EspecieEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuscaPerro.Domain.Mascota.Entidad.Historial_pesoEntity">
+    <Position X="10.25" Y="5.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEEAAAAAAAAAAAAAAAAAAAAAAAQAAEAAAAAAAAA=</HashCode>
+      <FileName>Mascota\Entities\Historial_pesoEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuscaPerro.Domain.Mascota.Entidad.MascotaEntity">
+    <Position X="8.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAACAAAgAAAAAAAAAAASAAAAAAAIAAAA=</HashCode>
+      <FileName>Mascota\Entities\MascotaEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuscaPerro.Domain.Mascota.Entidad.RazaEntity">
+    <Position X="8.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACABAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Mascota\Entities\RazaEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuscaPerro.Domain.Mascota.Models.ParRegistrarMascota">
+    <Position X="22.25" Y="5.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAACAAAgAAAAAAAAAAACAAAAAAAIAAAA=</HashCode>
+      <FileName>Mascota\Models\ParRegistrarMascota.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuscaPerro.Domain.Mascota.Models.ParRegistrarPeso">
+    <Position X="21" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEEAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Mascota\Models\ParRegistrarPeso.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuscaPerro.Domain.Mascota.Models.ParRegistrarRaza">
+    <Position X="23" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mascota\Models\ParRegistrarRaza.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuscaPerro.Domain.Mascota.Services.MascotaService" BaseTypeListCollapsed="true">
+    <Position X="5.25" Y="17" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAIACAQAEEgAAAAAoBAAAAAAAAAAAACCGAAA=</HashCode>
+      <FileName>Mascota\Services\MascotaService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Left" Position="2.178" />
+  </Class>
+  <Class Name="BuscaPerro.Domain.Vacunacion.DTO.VacunaCalendarioDTO">
+    <Position X="37.25" Y="7" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AQgACAAAABAAAAAAAAAAAAAAAABAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Vacunacion\DTO\VacunaCalendarioDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuscaPerro.Domain.Vacunacion.DTO.VacunaDTO">
+    <Position X="34.25" Y="7.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>gAgAAAAAAAAAAACAAAkAAAAIAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Vacunacion\DTO\VacunaDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuscaPerro.Domain.Vacunacion.Entidad.Calendario_vacunacionEntity">
+    <Position X="4.25" Y="5.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AQgAAAAAAAAAAAAAAAAAAAAAAABAAAQAAAEAAAAAAAA=</HashCode>
+      <FileName>Vacunacion\Entities\Calendario_vacunacionEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuscaPerro.Domain.Vacunacion.Entidad.Proveedor_vacunaEntity">
+    <Position X="4.25" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAIAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Vacunacion\Entities\Proveedor_vacunaEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuscaPerro.Domain.Vacunacion.Entidad.VacunaEntity">
+    <Position X="2" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>gAgAAAAAAAAAAACAAAEAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Vacunacion\Entities\VacunaEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuscaPerro.Domain.Vacunacion.Models.ParRegistrarProveedor">
+    <Position X="17.75" Y="5.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Vacunacion\Models\ParRegistrarProveedor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuscaPerro.Domain.Vacunacion.Models.ParRegistrarVacuna">
+    <Position X="15.25" Y="5.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAACAAAEAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Vacunacion\Models\ParRegistrarVacuna.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuscaPerro.Domain.Vacunacion.Models.ParRegistrarVacunaCalendario">
+    <Position X="17.5" Y="3.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AQgAAAAAAAAAAAAAAAAAAAAAAABAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Vacunacion\Models\ParRegistrarVacunaCalendario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuscaPerro.Domain.Vacunacion.Services.VacunacionService" BaseTypeListCollapsed="true">
+    <Position X="8.5" Y="15" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAIERAEAAAAAAIAAAAgAAAAAAAAAACAAAAAAAAABAAI=</HashCode>
+      <FileName>Vacunacion\Services\VacunacionService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Right" Position="1.573" />
+  </Class>
+  <Class Name="BuscaPerro.Domain.Veterinaria.DTO.UbicacionVeterinariasDTO">
+    <Position X="29.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAKAEAAAAAAACAgAAAAAAAAAAAAAAAAAAAAIAAAIA=</HashCode>
+      <FileName>Veterinaria\DTO\UbicacionVeterinariasDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuscaPerro.Domain.Veterinaria.Services.VeterinariaService" BaseTypeListCollapsed="true">
+    <Position X="9" Y="13.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Veterinaria\Services\VeterinariaService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Right" Position="0.516" />
+  </Class>
+  <Interface Name="BuscaPerro.Domain.Autentificacion.Interfaces.IAutorizacionService">
+    <Position X="12.25" Y="11.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Autentificacion\Interfaces\IAutorizacionService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BuscaPerro.Domain.Interfaz.Cuenta.Repository.ICuentaRepository">
+    <Position X="20" Y="17" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Cuenta\Interfaces\Repository\ICuentaRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BuscaPerro.Domain.Interfaz.Cuenta.Repository.IPersonaRepository">
+    <Position X="20" Y="15.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Cuenta\Interfaces\Repository\IPersonaRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BuscaPerro.Domain.Cuenta.Interfaces.Services.ICuentaService">
+    <Position X="2.75" Y="11.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Cuenta\Interfaces\Services\ICuentaService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BuscaPerro.Domain.Interfaz.Enfermedad.Repository.IEnfermedadRepository">
+    <Position X="27.5" Y="18.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enfermedad\Interfaces\Repository\IEnfermedadRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BuscaPerro.Domain.Interfaz.Enfermedad.Repository.IHistorico_enfermedadesRepository">
+    <Position X="27.5" Y="16.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAhAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enfermedad\Interfaces\Repository\IHistorico_enfermedadesRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BuscaPerro.Domain.Enfermedad.Interfaces.Services.IEnfermedadService">
+    <Position X="1" Y="14" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAADAAAAAAAAQAAAAAAAAgAAAAAEAAAA=</HashCode>
+      <FileName>Enfermedad\Interfaces\Services\IEnfermedadService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BuscaPerro.Domain.Interfaz.Mascota.Repository.IEspecieRepository">
+    <Position X="17.75" Y="10.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mascota\Interfaces\Repository\IEspecieRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BuscaPerro.Domain.Interfaz.Mascota.Repository.IHistorial_pesoRepository">
+    <Position X="20.5" Y="10.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mascota\Interfaces\Repository\IHistorial_pesoRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BuscaPerro.Domain.Interfaz.Mascota.Repository.IMascotaRepository">
+    <Position X="20.5" Y="8.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Mascota\Interfaces\Repository\IMascotaRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BuscaPerro.Domain.Interfaz.Mascota.Repository.IRazaRepository">
+    <Position X="23.25" Y="11.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mascota\Interfaces\Repository\IRazaRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BuscaPerro.Domain.Mascota.Interfaces.Services.IMascotaService">
+    <Position X="1.75" Y="17.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIACAAAEAAAAAAAoBAAAAAAAAAAAACCGAAA=</HashCode>
+      <FileName>Mascota\Interfaces\Services\IMascotaService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BuscaPerro.Domain.Interfaz.Vacunacion.Repository.ICalendario_vacunacionRepository">
+    <Position X="27.25" Y="11.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Vacunacion\Interfaces\Repository\ICalendario_vacunacionRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BuscaPerro.Domain.Interfaz.Vacunacion.Repository.IProveedor_vacunaRepository">
+    <Position X="27.5" Y="13.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Vacunacion\Interfaces\Repository\IProveedor_vacunaRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BuscaPerro.Domain.Interfaz.Vacunacion.Repository.IVacunaRepository">
+    <Position X="27.5" Y="9.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Vacunacion\Interfaces\Repository\IVacunaRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BuscaPerro.Domain.Vacunacion.Interfaces.Services.IVacunacionService">
+    <Position X="12.5" Y="15.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAIARAEAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAABAAI=</HashCode>
+      <FileName>Vacunacion\Interfaces\Services\IVacunacionService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BuscaPerro.Domain.Veterinaria.Interfaces.IVeterinariaService">
+    <Position X="12.5" Y="13.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Veterinaria\Interfaces\IVeterinariaService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BuscaPerro.Base.Generico.Repositorio.IGenericRepository&lt;T&gt;">
+    <Position X="25" Y="13.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

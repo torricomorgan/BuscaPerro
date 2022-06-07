@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BuscaPerro.Dal.Connection.DataBaseConnection">
+    <Position X="3.75" Y="1.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAEAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Connection\DataBaseConnection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuscaPerro.Base.Generico.Repositorio.GenericRepository&lt;T&gt;" BaseTypeListCollapsed="true">
+    <Position X="8" Y="1.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ACSICFBEAAAAAABACBABAAAACAYAAAgAAggAAAAAAIA=</HashCode>
+      <FileName>Generico\Repositorio\GenericRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BuscaPerro.Base.Generico.Metodos">
+    <Position X="6" Y="1.25" Width="1.5" />
+    <NestedTypes>
+      <Class Name="BuscaPerro.Base.Generico.Metodos.PropertyCopier&lt;T&gt;" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Generico\Metodos.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAAAAgAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Generico\Metodos.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="BuscaPerro.Base.Generico.Repositorio.IGenericRepository&lt;T&gt;">
+    <Position X="4" Y="3.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ACQAAFAEAAAAAABACAAAAAAAAAIAAAgAAggAAAAAAAA=</HashCode>
+      <FileName>Generico\Repositorio\IGenericRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
