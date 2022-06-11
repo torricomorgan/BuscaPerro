@@ -1,0 +1,76 @@
+﻿@page "/Ubicacionmascota"
+@using Blazored.LocalStorage;
+@using BuscaPerro.Domain.Mascota.DTO
+@using Microsoft.AspNetCore.Components.Rendering
+@using System.Globalization
+@inject Blazored.LocalStorage.ILocalStorageService localStore;
+@inject IRepositorio https;
+@inject IMostrarMensajes mostrarMensajes
+@inject NavigationManager navigationManager
+@inject IJSRuntime jsRuntime;
+<PageTitle>Ubicacion Mascota</PageTitle>
+
+<div class="contenedor2">
+
+   <ul class="nav nav-pills  mb-3" id="ex1" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="tab-login" data-mdb-toggle="pill" href="/mascota" role="tab"
+      aria-controls="pills-login" aria-selected="false">Mascota</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="tab-register" data-mdb-toggle="pill" href="/enfermedad" role="tab"
+      aria-controls="pills-register" aria-selected="false">Historial Clinico</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="tab-register" data-mdb-toggle="pill" href="/vacuna" role="tab"
+      aria-controls="pills-register" aria-selected="false">Calendario Vacunacion</a>
+  </li>
+   <li class="nav-item" role="presentation">
+    <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" href="/Ubicacionmascota" role="tab"
+      aria-controls="pills-login" aria-selected="true">Rastreo Mascota</a>
+  </li>
+  <button class="btn btn-danger" style="position:absolute; right:5px;" @onclick="@LogoutF">Cerrar Sesion</button>
+</ul>
+
+<div id="map" style="position:absolute;right:8%;top:5%;height:90vh;width:60%;">
+
+</div>
+
+</div>
+
+@code {
+    private UbicacionMascotaDTO ubicacionMascota = new();
+    private Double lat = -17.783295;
+    private Double lng = -63.180974;
+    private string datos = "";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await this.ObtenerCoordenadas();
+            await jsRuntime.InvokeVoidAsync("initialize", lat, lng, datos);
+            StateHasChanged();
+        }
+    }
+
+    public async Task ObtenerCoordenadas()
+    {
+        var result = await https.Get<UbicacionMascotaDTO>($"https://buscaperroapi.azurewebsites.net/api/Mascota/RastrearMascota?idMascota=1");
+        ubicacionMascota = result.Response;
+        if (ubicacionMascota.latitud != null)
+        {
+            NumberFormatInfo provider = new NumberFormatInfo();
+            provider.NumberDecimalSeparator = ".";
+            lat = Convert.ToDouble(ubicacionMascota.latitud, provider);
+            lng = Convert.ToDouble(ubicacionMascota.longitud, provider);
+            datos = "Dept:"+ubicacionMascota.departamento + ", Ciud:" + ubicacionMascota.ciudad;
+        }
+    }
+
+    private async Task LogoutF()
+    {
+        await localStore.ClearAsync();
+        navigationManager.NavigateTo("/");
+    }
+}
