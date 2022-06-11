@@ -1,0 +1,77 @@
+﻿@inject HttpClient http;
+@inject IRepositorio https;
+@using Blazored.LocalStorage;
+@using BuscaPerro.Domain.Veterinaria.DTO
+@using FormMascota.Dtos
+@inject Blazored.LocalStorage.ILocalStorageService localStore
+@inject NavigationManager navigationManager
+
+
+
+@code {
+    protected override async void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var ID_cuenta_string = await localStore.GetItemAsStringAsync("ID_USER");
+            if (ID_cuenta_string == null || ID_cuenta_string == "")
+            {
+                navigationManager.NavigateTo("/");
+            }
+            StateHasChanged();
+        }
+    }
+   
+
+    public RegisterPetsDTO valor = new();
+    public List<UbicacionVeterinariasDTO> DatosVeterinariaList = new();
+
+    public async Task IndexFuntion()
+    {
+        var result = await https.Get<List<UbicacionVeterinariasDTO>>($"https://buscaperroapi.azurewebsites.net/api/Veterinaria/ListarVerinariasCercanas");
+        DatosVeterinariaList = result.Response;
+    }
+    
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await IndexFuntion();
+            StateHasChanged();
+        }
+    }
+
+    }
+
+    <div>
+
+     <EditForm Model="valor" >
+
+        <table class="table table-bordered" >
+  <thead>
+      <th colspan="7" style="text-align:center;font-size:21px">Lista de Vacunas</th>
+    <tr>
+      <th scope="col">Estado</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Ubicacion</th>
+      <th scope="col">Calificacion</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var item in DatosVeterinariaList)
+    {
+        <tr>
+            <td>@item.estado</td>
+            <td>@item.nombre</td>
+            <td>@item.ubicacion</td>
+            <td>@item.calificacion</td>
+        </tr>
+    }
+  </tbody>
+</table>
+
+      
+   </EditForm>
+</div>
+

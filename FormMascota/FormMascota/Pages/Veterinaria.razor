@@ -1,0 +1,104 @@
+﻿@page "/veterinaria"
+@using Blazored.LocalStorage;
+@using BuscaPerro.Domain.Mascota.DTO
+@using BuscaPerro.Domain.Vacunacion.DTO
+@using BuscaPerro.Domain.Vacunacion.Models
+@using BuscaPerro.Domain.Veterinaria.DTO
+@using Microsoft.AspNetCore.Components.Rendering
+@inject Blazored.LocalStorage.ILocalStorageService localStore;
+@inject IRepositorio https;
+@inject IMostrarMensajes mostrarMensajes
+@inject NavigationManager navigationManager
+<PageTitle>Veterinaria</PageTitle>
+
+
+
+<div class="contenedor2">
+   <ul class="nav nav-pills  mb-3" id="ex1" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="tab-register" data-mdb-toggle="pill" href="/mascota" role="tab"
+      aria-controls="pills-login" aria-selected="false">Mascota</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="tab-register" data-mdb-toggle="pill" href="/enfermedad" role="tab"
+      aria-controls="pills-register" aria-selected="false">Historial Clinico</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="tab-register" data-mdb-toggle="pill" href="/vacuna" role="tab"
+      aria-controls="pills-register" aria-selected="true">Calendario Vacunacion</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="tab-login" data-mdb-toggle="pill" href="/UbicacionMascota" role="tab"
+      aria-controls="pills-login" aria-selected="false">Rastreo Mascota</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" href="/veterinaria" role="tab"
+      aria-controls="pills-login" aria-selected="false">Veterinaria</a>
+  </li>
+  <button class="btn btn-danger" style="position:absolute; right:5px;" @onclick="@LogoutF">Cerrar Sesion</button>
+</ul>
+
+ <div style="position:absolute;right:8%;top:5%;height:90vh;width:60%;">
+        <table class="table table-bordered" >
+  <thead>
+      <th colspan="7" style="text-align:center;font-size:21px">Lista de Veterinarias</th>
+    <tr>
+      <th scope="col">Estado</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Ubicacion</th>
+      <th scope="col">Calificacion</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var item in DatosVeterinariaList)
+    {
+        <tr>
+            <td>@item.estado</td>
+            <td>@item.nombre</td>
+            <td>@item.ubicacion</td>
+            <td>@item.calificacion</td>
+        </tr>
+    }
+  </tbody>
+</table>
+</div>
+
+</div>
+
+@code {
+    protected override async void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var ID_cuenta_string = await localStore.GetItemAsStringAsync("ID_USER");
+            if (ID_cuenta_string == null || ID_cuenta_string == "")
+            {
+                navigationManager.NavigateTo("/");
+            }
+            StateHasChanged();
+        }
+    }
+
+    public List<UbicacionVeterinariasDTO> DatosVeterinariaList = new();
+
+    public async Task IndexFuntion()
+    {
+        var result = await https.Get<List<UbicacionVeterinariasDTO>>($"https://buscaperroapi.azurewebsites.net/api/Veterinaria/ListarVeterinariasCercanas");
+        DatosVeterinariaList = result.Response;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await this.IndexFuntion();
+            StateHasChanged();
+        }
+    }
+
+    private async Task LogoutF()
+    {
+        await localStore.ClearAsync();
+        navigationManager.NavigateTo("/");
+    }
+}

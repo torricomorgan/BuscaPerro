@@ -7,13 +7,30 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Pages\ListVeterinarias.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Blazored.LocalStorage" Version="4.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Forms" Version="6.0.5" />
     <PackageReference Include="ProtectedBrowserStorage.NETStandard" Version="1.1.2" />
     <PackageReference Include="RestSharp" Version="107.3.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\BuscaPerro.Domain\BuscaPerro.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\ListVeterinarias.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\ListVeterinarias.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Pages\ListVeterinarias.razor" />
   </ItemGroup>
 
 </Project>
